@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI活用型仮説思考研修 - 戦略的AIで未来を掴む</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Strategic Blue & Warm Neutral -->
+    <!-- Application Structure Plan: A single-page narrative application that guides the user from awareness to action. The structure is now: Hero, Impact (showing immediate value), Solution (how to achieve it), Use Cases (specific application for sales), Expert (credibility), and Contact. This reordering prioritizes impact and solution over problem statement, and focuses the use cases specifically on sales, aligning with user's latest request for sales部長 persona. -->
+    <!-- Visualization & Content Choices: 1. AI Use Comparison (Info) -> Compare (Goal) -> Visual Table/Side-by-side layout (Viz) -> Clearly contrasts old vs. new paradigms without a complex chart (Justification) -> HTML/Tailwind. (This section is now removed as per user request). 2. Persona Method (Info) -> Organize/Inform (Goal) -> Interactive 4-step diagram (Viz) -> Breaks down the unique methodology into digestible, engaging steps (Justification) -> HTML/CSS/JS. 3. Key Benefits (Info) -> Inform (Goal) -> Icon/Text Block Visuals (Viz) -> Provides a quick, impactful summary of benefits without relying on data for a qualitative appeal (Justification) -> HTML/CSS. 4. Department Use Cases (Info) -> Organize/Inform (Goal) -> Single-content block (Viz) -> Focuses entirely on sales use case as requested, removing other tabs for direct relevance (Justification) -> HTML/CSS/JS. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body { font-family: 'Noto Sans JP', sans-serif; background-color: #FDFCF9; color: #374151; }
+        .font-black { font-weight: 900; }
+        h1, h2, h3 { font-family: 'Noto Sans JP', sans-serif; font-weight: 900; letter-spacing: -0.02em; }
+        .gradient-text { background: linear-gradient(to right, #1e3a8a, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .tab-active { border-color: #1e3a8a; color: #1e3a8a; background-color: #e0e7ff; }
+        .tab-inactive { border-color: transparent; color: #6b7280; }
+        .step-card { transition: all 0.3s ease-in-out; }
+        .step-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+        .kpi-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); }
+        .benefit-icon { font-size: 3rem; line-height: 1; margin-bottom: 0.5rem; }
+        .section-title-underline {
+            display: inline-block;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #bfdbfe; /* Light blue underline */
+        }
+        .section-highlight-bg {
+            background: linear-gradient(to bottom right, #e0f2fe, #bfdbfe); /* Light blue gradient */
+            position: relative;
+            overflow: hidden;
+        }
+        .section-highlight-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/cubes.png') repeat; /* Subtle pattern */
+            opacity: 0.05;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="text-xl font-black text-gray-800">
+                <span class="gradient-text">AI</span>活用型仮説思考研修
+            </div>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#impact" class="text-sm text-gray-600 hover:text-blue-800">導入効果</a>
+                <a href="#solution" class="text-sm text-gray-600 hover:text-blue-800">独自アプローチ</a>
+                <a href="#use-cases" class="text-sm text-gray-600 hover:text-blue-800">営業課題解決</a>
+                <a href="https://forms.office.com/r/dwDj5a8Bvq" class="bg-blue-800 text-white font-bold text-xs px-5 py-2 rounded-full hover:bg-blue-900 transition-colors">お問い合わせ</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95">
+            <a href="#impact" class="block py-2 px-4 text-sm text-gray-700 hover:bg-blue-50">導入効果</a>
+            <a href="#solution" class="block py-2 px-4 text-sm text-gray-700 hover:bg-blue-50">独自アプローチ</a>
+            <a href="#use-cases" class="block py-2 px-4 text-sm text-gray-700 hover:bg-blue-50">営業課題解決</a>
+            <a href="https://forms.office.com/r/dwDj5a8Bvq
+
+" class="block py-2 px-4 text-sm text-white bg-blue-800 hover:bg-blue-900">お問い合わせ</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="relative py-20 md:py-32 bg-gradient-to-br from-slate-50 to-blue-50 overflow-hidden">
+             <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/az-subtle.png')] opacity-20"></div>
+            <div class="container mx-auto px-6 text-center relative z-10">
+                <h1 class="text-5xl md:text-7xl font-black leading-tight text-gray-900">
+                    営業力を<span class="gradient-text">劇的に強化する</span><br>AIとの戦略的対話
+                </h1>
+                <p class="mt-6 text-lg md:text-xl text-gray-700 max-w-3xl mx-auto">
+                    貴社の営業チームは、まだ「場当たり的な提案」で消耗していませんか？<br>本研修はAIを単なる情報収集ツールから「トップセールスの壁打ち相手」へ昇華させ、顧客に深く刺さる提案と圧倒的な営業競争力を飛躍的に高めます。
+                </p>
+                <a href="https://forms.office.com/r/dwDj5a8Bvq" class="mt-10 inline-block bg-blue-800 text-white font-bold text-xl px-10 py-5 rounded-full shadow-2xl hover:bg-blue-900 transition-transform transform hover:scale-105">
+                    競合に打ち勝つ営業力を手に入れる
+                </a>
+            </div>
+        </section>
+        
+        <section id="impact" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-black pb-2 border-b-2 border-blue-200 inline-block">研修で生まれた「ヤバい」瞬間</h2>
+                    <p class="mt-4 text-gray-600 max-w-2xl mx-auto">この研修は単なる理論ではありません。大手SIerでの研修では、参加者から「マジで他社より早く身に着けないとヤバい」という強烈な危機感が生まれました。これは、貴社の営業チームが競合に打ち勝つための「最後のピース」となることを意味します。</p>
+                </div>
+
+                <div class="grid lg:grid-cols-5 gap-8 items-center">
+                    <div class="lg:col-span-3 bg-white p-8 rounded-xl shadow-xl">
+                         <h3 class="text-2xl font-black mb-6">先進的なAI活用がもたらす衝撃</h3>
+                         <div class="prose max-w-none text-gray-700">
+                             <p>研修中、講師がファシリテーションの基準を「先進的な外資系コンサルティングファームのAI利用方法」に設定した瞬間、空気は一変しました。自社の使い方とのレベルの違いを突きつけられ、「これを先進企業や他社が実践しているなら、自社も早期に取り組む必要がある」という厳しい現実を突きつけられたのです。</p>
+                             <blockquote class="border-l-4 border-blue-700 pl-4 my-4 italic">
+                                 “AIは導入済み。プロンプトも共有済み。でも『案件での活用』『会議にどう活かす？』など実務接続はそこまで…”
+                             </blockquote>
+                             <p>これは多くの企業が抱える課題です。本研修は、この「ツール導入止まり」の壁を打ち破り、AIをビジネスプロセスに深く統合する具体的なフレームワークを提供します。</p>
+                         </div>
+                    </div>
+                     <div class="lg:col-span-2 flex flex-col items-center justify-center space-y-8 p-6 bg-blue-100 rounded-xl shadow-xl">
+                        <div class="text-center">
+                            <span class="benefit-icon" role="img" aria-label="Target">🎯</span>
+                            <p class="font-bold text-lg text-blue-800">顧客に深く刺さる提案力</p>
+                            <p class="text-sm text-gray-600">顧客の本質的課題を捉え、響く提案を構築。</p>
+                        </div>
+                        <div class="text-center">
+                            <span class="benefit-icon" role="img" aria-label="Hourglass">⏳</span>
+                            <p class="font-bold text-lg text-blue-800">商談準備時間を劇的短縮</p>
+                            <p class="text-sm text-gray-600">数週間かかっていた準備が数時間に。</p>
+                        </div>
+                        <div class="text-center">
+                            <span class="benefit-icon" role="img" aria-label="Shield">🛡️</span>
+                            <p class="font-bold text-lg text-blue-800">競合に打ち勝つ戦略構築</p>
+                            <p class="text-sm text-gray-600">AIが競合の弱点と自社の強みを分析。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="solution" class="py-20 section-highlight-bg">
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-black section-title-underline">商談を「飛躍的に」加速する独自アプローチ</h2>
+                    <p class="mt-6 text-lg text-gray-700 max-w-3xl mx-auto">本研修の核は、AIに多様な役割（ペルソナ）を与えて対話させることです。これにより、顧客の深層心理や競合の戦略を瞬時にシミュレートし、人間単独では不可能なレベルで商談を加速させます。貴社の営業チームは、AIを「トップセールスの壁打ち相手」として活用できるようになります。</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="step-container">
+                </div>
+            </div>
+        </section>
+
+        <section id="use-cases" class="py-20 bg-slate-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-black pb-2 border-b-2 border-blue-200 inline-block">AIが貴社の「営業課題」を解決する</h2>
+                    <p class="mt-4 text-gray-600 max-w-2xl mx-auto">この手法は、営業部門のあらゆる課題解決に適用可能です。具体的な活用例をご覧ください。</p>
+                </div>
+                 <div class="max-w-4xl mx-auto">
+                    <div class="mt-6 bg-white p-6 rounded-xl shadow-lg">
+                        <div id="sales-content" class="tab-content prose-sm max-w-none"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="expert" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="bg-white p-8 rounded-xl shadow-xl max-w-4xl mx-auto grid md:grid-cols-3 gap-8 items-center">
+                    <div class="md:col-span-1 flex flex-col items-center text-center">
+                        <img src="image_bd9c7e.jpg-508befc9-83a4-4dd1-a1d2-8fb1f6475321" alt="塩谷征司氏" class="rounded-full mb-4 ring-4 ring-blue-100">
+                        <h3 class="text-xl font-black">塩谷 征司 (シオヤ マサシ)</h3>
+                        <p class="text-sm text-gray-500">ビジネス・ブレークスルー大学 研修担当講師</p>
+                    </div>
+                    <div class="md:col-span-2">
+                        <h4 class="text-lg font-bold mb-4">「成果を出す」戦略を導くAI活用のプロ</h4>
+                        <p class="mb-4 text-gray-700 text-sm">大手IT企業、外資系コンサルティングファーム出身。IT業界でキャリアをスタートし、BIベンダー、デジタルエクスペリエンスプラットフォームベンダーなどでコンサルティング及びセールスに従事。ビジネス・ブレークスルー大学院にて問題解決プログラムを修了し、現在は同大学の研修担当講師も務めています。顧客幹部層へのアプローチ、競合分析、提案力強化など、営業現場で結果を出すためのAI活用法を伝授します。</p>
+                        <h5 class="font-bold mb-2 text-sm">主な実務実績（抜粋）</h5>
+                        <div class="text-xs text-gray-600">
+                            **日本マイクロソフト:** デジタルトランスフォーメーションやEC変革支援、戦略顧客営業でのDXコンサルティングセリング展開、店舗マーケティング戦略ワークショップ企画・講師。<br>
+                            **サイトコア:** 大手ホテル・入浴施設運営企業のデジタルマーケティング戦略策定支援、グローバル展開の精密機器メーカーのWebサイト・ECによる対顧客関係強化支援。<br>
+                            **PwCコンサルティング:** 大手システム開発企業の課題解決型営業への転換支援、非営利団体のファンドレイジングのためのマーケティング戦略策定指導支援、グローバル経営状況の可視化に向けたBI導入支援。<br>
+                            **ビジネスインテリジェンスメーカー:** 自社BI製品導入提案後の経営者・経営幹部に対するビジネス問題アプローチでのコンサルティングセリング、代理店営業担当者へのコンサルティング。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 bg-blue-900 text-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-black">戦略的AIスキルで営業の未来を拓きましょう</h2>
+                <p class="mt-4 text-lg text-blue-200 max-w-3xl mx-auto">
+                    今こそ、チームの営業力を戦略レベルに引き上げる時です。この変革の機会を捉え、貴社の営業力と顧客開拓を飛躍的に加速させましょう。
+                </p>
+                <a href="https://forms.office.com/r/dwDj5a8Bvq" class="mt-8 inline-block bg-white text-blue-800 font-bold text-lg px-10 py-4 rounded-full shadow-lg hover:bg-blue-100 transition-colors">
+                    研修に関するお問い合わせはこちら
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-6 text-center text-xs">
+            <p>&copy; 2025 AI活用型仮説思考研修. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            });
+
+            const stepData = [
+                { title: "情報インプット", description: "議論の土台となる自社の基本情報や課題、参考資料などをAIに読み込ませ、現状を丸裸に。" },
+                { title: "ペルソナ設計", description: "競合CEO、顧客、異業種の専門家など、議論に必要な「仮想の賢者」を設計し、多角的な視点を導入。" },
+                { title: "AIによる議論", description: "設計した3〜4名のペルソナにテーマについて議論させ、深掘りされた仮説を生成。人間の役割は最高の議論を引き出すこと。" },
+                { title: "知見の抽出", description: "人間がファシリテーターとなり、AIの議論から新たな仮説やアイデアを抽出し、思考を深める。会議や資料作成のスピードが格段に向上。" }
+            ];
+            const stepContainer = document.getElementById('step-container');
+            stepData.forEach((step, index) => {
+                const card = document.createElement('div');
+                card.className = "group step-card bg-white p-6 rounded-xl shadow-lg border-t-4"; // Added group and rounded-xl
+                card.style.borderColor = `hsl(220, ${60 + index * 10}%, 60%)`;
+                card.innerHTML = `
+                    <div class="flex items-center mb-3">
+                        <div class="bg-blue-100 text-blue-800 font-black rounded-full w-10 h-10 flex items-center justify-center text-xl transition-colors group-hover:bg-blue-200">${index + 1}</div>
+                        <h3 class="ml-4 text-lg font-bold text-gray-800 group-hover:text-blue-700 transition-colors">${step.title}</h3>
+                    </div>
+                    <p class="text-sm text-gray-600">${step.description}</p>`;
+                stepContainer.appendChild(card);
+            });
+
+            const useCasesData = {
+                sales: {
+                    title: "営業・提案力強化",
+                    content: `
+                        <p><strong>課題:</strong> 顧客幹部層へのアプローチ不足、提案内容の陳腐化、商談準備の非効率性。</p>
+                        <p><strong>AI活用:</strong> 顧客企業の社長や決裁者のペルソナを設定し、彼らの視点から自社提案の弱点を洗い出します。これにより、数週間かかっていた準備が数時間に短縮され、議論の質も向上。競合他社の営業戦略をAIに分析させ、自社の優位性を最大化する提案を構築します。</p>
+                        <p><strong>具体的な成果:</strong> 商談の質の向上、営業サイクルの短縮、顧客満足度の向上、営業チーム全体の提案力底上げ。</p>`
+                }
+            };
+            // Set initial tab content to sales
+            document.getElementById('sales-content').innerHTML = useCasesData.sales.content;
+
+            // Removed tabs as per user request
+            // const tabs = document.querySelectorAll('.tab-button');
+            // const tabContents = document.querySelectorAll('.tab-content');
+            // tabs.forEach(tab => {
+            //     tab.addEventListener('click', () => {
+            //         const target = tab.dataset.tab;
+            //         tabs.forEach(t => t.classList.replace('tab-active', 'tab-inactive'));
+            //         tab.classList.replace('tab-inactive', 'tab-active');
+            //         tabContents.forEach(c => c.id === `${target}-content` ? c.classList.remove('hidden') : c.classList.add('hidden'));
+            //     });
+            // });
+
+            // benefitsChartのChart.jsコードは削除されました。
+        });
+    </script>
+</body>
+</html>
